@@ -41,15 +41,21 @@ class StratosClient:
     def construct_path(self, path_str):
         if path_str is None:
             return ""
+        # Decomposition the path we got from the command line
+        pre_path = []
+        if self.__path_prefix is not None:
+            pre_path = self.__path_prefix.strip('"').split("/")
+            pre_path = list(filter(None, pre_path))
+
+        # NOTE: For now i will assume that the All Files root directory should be removed
         path_to_file = path_str.strip('"').split("/")
         path_to_file = list(filter(None, path_to_file))
-        path_to_file = '/'.join(path_to_file)
-        # NOTE: We assume that the root of BOX will live
-        #       under the /home/user path
-        if self.__path_prefix == '':
-            path = Path.home().joinpath(path_to_file)
-        else:
-            path = Path(self.__path_prefix).joinpath(path_to_file)
+        path_to_file.pop(0)
+        # Merge pre path with the path we got from the mdq
+        final_path = pre_path + path_to_file
+
+        final_path = '/'.join(final_path)
+        path = Path("/").joinpath(final_path)
 
         return path
 
