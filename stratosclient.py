@@ -66,6 +66,8 @@ class StratosClient:
         connection = pika.BlockingConnection(parameters)
         channel = connection.channel()
 
+        # Declare or bind to the queue
+        channel.queue_declare(self.__queue, durable=True)
         channel.basic_consume(queue=self.__queue,
                               on_message_callback=self.callback,
                               auto_ack=True)
