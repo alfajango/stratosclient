@@ -15,7 +15,7 @@ def parse_arguments(args):
     :rtype: ArgumentParser
     """
     parser = argparse.ArgumentParser(description="Configure your Stratos client")
-
+    # fixme: What if the user provides the wrong configuration?
     parser.add_argument('--platform', '-x', dest="platform", help='Operating System', default='linux',
                         choices=['linux', 'macos', 'win'])
     parser.add_argument('--path', '-p', dest="path_prefix", help='Path prefix', default='')
@@ -50,7 +50,7 @@ class StratosClient:
         # NOTE: For now i will assume that the All Files root directory should be removed
         path_to_file = path_str.strip('"').split("/")
         path_to_file = list(filter(None, path_to_file))
-        path_to_file.pop(0)
+        # path_to_file.pop(0)
         # Merge pre path with the path we got from the mdq
         final_path = pre_path + path_to_file
 
