@@ -44,7 +44,7 @@ class StratosClient:
         # Decomposition the path we got from the command line
         pre_path = []
         if self.__path_prefix is not None:
-            pre_path = self.__path_prefix.strip('"').split("/")
+            pre_path = self.__path_prefix.strip('"All files').split("/")
             pre_path = list(filter(None, pre_path))
 
         # NOTE: For now i will assume that the All Files root directory should be removed
