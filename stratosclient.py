@@ -48,7 +48,7 @@ class StratosClient:
             pre_path = list(filter(None, pre_path))
 
         # NOTE: For now i will assume that the All Files root directory should be removed
-        path_to_file = path_str.strip('"').split("/")
+        path_to_file = path_str.strip('"All Files').split("/")
         path_to_file = list(filter(None, path_to_file))
         # path_to_file.pop(0)
         # Merge pre path with the path we got from the mdq
